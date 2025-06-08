@@ -1,0 +1,62 @@
+﻿@model FlowerAura.Models.Flowers
+@{
+    ViewData["Title"] = "Add Flower";
+}
+
+<h2>Add Flower</h2>
+<a href="@Url.Action("Dashboard", "Admin")" class="back-button">Back to Dashboard</a>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<form asp-action="Addflower" asp-controller="Flowers" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Flower Name</label>
+        <input asp-for="FlowerName" class="form-control" />
+        <span asp-validation-for="FlowerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" asp-for="ImageFile" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for="Category" class="form-control">
+            <option value="">-- Select Category --</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Best Sellers">Best Sellers</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Bouquet">Bouquet</option>
+            <option value="Love & Affection">Love & Affection</option>
+            <option value="Luxury Flowers">Luxury Flowers</option>
+            <option value="Occasions">Occasions</option>
+            <option value="Routine Flower">Routine Flower</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label>Amount</label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"   />
+}
